@@ -56,45 +56,44 @@ public class Main {
         console.println("   \\    \\_/");
         console.println("    \" \"\" \"\" \"\" \"");
 
+        int round = 1;
         do {
+            console.setForegroundColor(Ansi.FColor.WHITE);
+            console.println("---------- Round "+ (round++) +" ----------");
             console.println("");
             console.println("Player, it's your turn");
             console.println("Enter coordinates for your shot :");
             Position position = parsePosition(scanner.next());
             boolean isHit = GameController.checkIsHit(enemyFleet, position);
-            if (isHit) {
-                beep();
-
-                console.println("                \\         .  ./");
-                console.println("              \\      .:\" \";'.:..\" \"   /");
-                console.println("                  (M^^.^~~:.'\" \").");
-                console.println("            -   (/  .    . . \\ \\)  -");
-                console.println("               ((| :. ~ ^  :. .|))");
-                console.println("            -   (\\- |  \\ /  |  /)  -");
-                console.println("                 -\\  \\     /  /-");
-                console.println("                   \\  \\   /  /");
-            }
-
-            console.println(isHit ? "Yeah ! Nice hit !" : "Miss");
+            printHitMiss(true, isHit);
 
             position = getRandomPosition();
             isHit = GameController.checkIsHit(myFleet, position);
+            console.setForegroundColor(Ansi.FColor.MAGENTA);
             console.println("");
             console.println(String.format("Computer shoot in %s%s and %s", position.getColumn(), position.getRow(), isHit ? "hit your ship !" : "miss"));
-            if (isHit) {
-                beep();
-
-                console.println("                \\         .  ./");
-                console.println("              \\      .:\" \";'.:..\" \"   /");
-                console.println("                  (M^^.^~~:.'\" \").");
-                console.println("            -   (/  .    . . \\ \\)  -");
-                console.println("               ((| :. ~ ^  :. .|))");
-                console.println("            -   (\\- |  \\ /  |  /)  -");
-                console.println("                 -\\  \\     /  /-");
-                console.println("                   \\  \\   /  /");
-
-            }
+            printHitMiss(false, isHit);
         } while (true);
+    }
+
+    private static void printHitMiss(boolean isPlayer, boolean isHit) {
+        if (isHit) {
+            beep();
+            console.setForegroundColor(Ansi.FColor.RED);
+            if (isPlayer) {
+                console.println(isHit ? "Yeah ! Nice hit !" : "Miss");
+            }
+        } else {
+            console.setForegroundColor(Ansi.FColor.BLUE);
+        }
+        console.println("                \\         .  ./");
+        console.println("              \\      .:\" \";'.:..\" \"   /");
+        console.println("                  (M^^.^~~:.'\" \").");
+        console.println("            -   (/  .    . . \\ \\)  -");
+        console.println("               ((| :. ~ ^  :. .|))");
+        console.println("            -   (\\- |  \\ /  |  /)  -");
+        console.println("                 -\\  \\     /  /-");
+        console.println("                   \\  \\   /  /");
     }
 
     private static void beep() {
