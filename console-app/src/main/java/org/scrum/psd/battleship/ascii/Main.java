@@ -75,6 +75,7 @@ public class Main {
 
             if (fleetDestroyed(enemyFleet)) {
                 showYouWin();
+                break;
             }
 
             position = getRandomPosition();
@@ -86,6 +87,7 @@ public class Main {
 
             if (fleetDestroyed(myFleet)) {
                 showGameOver();
+                break;
             }
         } while (true);
     }
