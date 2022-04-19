@@ -9,6 +9,7 @@ public class Ship {
     private int size;
     private List<Position> positions;
     private Color color;
+    public boolean isDestroyed = false;
 
     public Ship() {
         this.positions = new ArrayList<>();
@@ -84,5 +85,24 @@ public class Ship {
 
     public void setSize(int size) {
         this.size = size;
+    }
+
+    public boolean isDestroyed() {
+        if(isDestroyed) {
+            return true;
+        }
+        boolean allHit = true;
+        for (Position position : positions
+        ) {
+            if (!position.isHit) {
+                allHit = false;
+                break;
+            }
+        }
+
+        if (allHit) {
+            isDestroyed = true;
+        }
+        return isDestroyed;
     }
 }
