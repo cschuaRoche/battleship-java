@@ -105,4 +105,16 @@ public class Ship {
         }
         return isDestroyed;
     }
+
+    @Override
+    public String toString() {
+        return "Ship{" +
+                "isPlaced=" + isPlaced +
+                ", name='" + name + '\'' +
+                ", size=" + size +
+                ", positions=" + positions +
+                ", color=" + color +
+                ", isDestroyed=" + isDestroyed +
+                '}';
+    }
 }

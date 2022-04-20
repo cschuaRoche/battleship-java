@@ -45,4 +45,13 @@ public class Position {
 
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "Position{" +
+                "column=" + column +
+                ", row=" + row +
+                ", isHit=" + isHit +
+                '}';
+    }
 }
